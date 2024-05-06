@@ -11,6 +11,7 @@ axum = "0.7"
 serde = { version = "1", features = ["derive"] }
 serde_json = "1.0.116"
 tower-http = { verion = "0.4", features = ["fs"] } 
+tower-cookies = "0.10.0"
 
 [dev-dependencies]
 anyhow = "1"
