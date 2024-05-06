@@ -8,23 +8,33 @@ use serde_json::json;
 async fn quick_dev() -> httpc_test::Result<()> {
     let hc = httpc_test::new_client("http://127.0.0.1:8080")?;
 
-    hc.do_get("/hello2/Mike").await?.print().await?; // this one has no cookies
+    // hc.do_get("/hello2/Mike").await?.print().await?; // this one has no cookies
+
+    // hc.do_get("/hello2/Mike").await?.print().await?; // this one has cookies
 
     // hc.do_get("/html/index.html").await?.print().await?;
 
-    let something = hc.do_post("/postaddress/", "something");
-    something.await?.print().await?;
+    // let something = hc.do_post("/postaddress/", "something");
+    // something.await?.print().await?;
 
-    let req_login = hc.do_post(
-        "/api/login",
+    // let req_login = hc.do_post(
+    //     "/api/login",
+    //     json!({
+    //         "username": "demo1",
+    //         "pwd": "welcome"
+    //     }),
+    // );
+    // req_login.await?.print().await?;
+
+    let req_create_ticket = hc.do_post(
+        "/api/tickets",
         json!({
-            "username": "demo1",
-            "pwd": "welcome"
+            "title": "Ticket AAA"
         }),
     );
-    req_login.await?.print().await?;
+    req_create_ticket.await?.print().await?;
 
-    hc.do_get("/hello2/Mike").await?.print().await?; // this one has cookies
+    hc.do_get("/api/tickets").await?.print().await?;
 
     Ok(())
 }
